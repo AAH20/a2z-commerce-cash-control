@@ -1,0 +1,4 @@
+order_id,currency,amount,paid_at
+O1,USD,100.00,2026-08-05
+O2,USD,50.00,2026-08-06
+O3,USD,30.00,2026-08-07

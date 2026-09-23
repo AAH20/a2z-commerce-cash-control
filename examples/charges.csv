@@ -1,0 +1,3 @@
+charge_id,order_id,currency,gross,fee,net,payout_id,settled_at
+C1,O1,USD,100.00,3.00,97.00,P1,2026-08-06
+C2,O2,USD,50.00,2.00,48.00,P1,2026-08-07
