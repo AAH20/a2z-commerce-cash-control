@@ -204,6 +204,7 @@ def evaluate(manifest_path: Path) -> dict:
         "as_of": as_of.isoformat(), "source_sha256": digests,
         "source_row_counts": {kind: len(data[kind]) for kind in FIELDS},
         "source_controls_passed": True,
+        "control_origin": manifest.get("control_origin", "operator_declared"),
         "ledger_linked_payout_by_currency": {key: f"{value:.2f}" for key, value in sorted(matched.items())},
         "exception_counts": dict(sorted(Counter(item["reason"] for item in exceptions).items())),
         "exceptions": exceptions,

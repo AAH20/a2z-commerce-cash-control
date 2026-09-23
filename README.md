@@ -10,6 +10,8 @@ Commerce teams often have several accurate systems and no single answer to a pra
 
 **New: [CloseOps Connect Stripe payout bridge](docs/STRIPE_BRIDGE.md).** A GET-only connector can snapshot one authorized automatic payout and its balance transactions. The offline normalizer emits charge and payout CSVs **only** when the entire paid USD payout is representable by mapped positive charges. Refunds, disputes, reserves, conversions and incomplete payouts are held rather than misrepresented. The checked-in example is fictional; no live merchant account was accessed.
 
+**New: [CloseOps Accountant Desk](docs/ACCOUNTANT_DESK.md).** `closeops-desk` opens an offline desktop interface for selecting local source files, creating client and firm manifests, running a firm close, reviewing exceptions, and exporting an operator-declared review summary. No browser server or cloud account is involved. A Python build with Tkinter is required.
+
 ## Run the fictional example
 
 ```bash

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "a2z-commerce-cash-control"
-version = "0.3.0"
+version = "0.4.0"
 description = "Read-only commerce order, processor payout, and ledger reconciliation"
 requires-python = ">=3.11"
 dependencies = []
@@ -13,6 +13,7 @@ dependencies = []
 cash-control = "cash_control.cli:main"
 closeops = "cash_control.closeops:main"
 stripe-bridge = "cash_control.stripe_bridge:main"
+closeops-desk = "cash_control.desk:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

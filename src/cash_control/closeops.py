@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import re
 import tempfile
 from collections import Counter
@@ -69,10 +70,12 @@ def run_firm(manifest_path: Path, output_dir: Path) -> dict:
     output_dir.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".closeops-", dir=output_dir.parent) as staging:
         staged = Path(staging) / "run"
-        staged.mkdir()
+        staged.mkdir(mode=0o700)
         for key, report in results.items():
             write_report(report, staged / "clients" / key)
-        (staged / "portfolio.json").write_text(json.dumps(dashboard, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        descriptor = os.open(staged / "portfolio.json", os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
+            stream.write(json.dumps(dashboard, indent=2, sort_keys=True) + "\n")
         staged.rename(output_dir)
     return dashboard
 
@@ -127,7 +130,9 @@ def summarize_reviews(run_dir: Path, output_path: Path) -> dict:
         "clients": clients,
         "boundary": "Reviewer names and decisions are unauthenticated operator-supplied CSV data. Declared resolution is not independently verified or a recovered-cash claim.",
     }
-    output_path.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    descriptor = os.open(output_path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
+        stream.write(json.dumps(summary, indent=2, sort_keys=True) + "\n")
     return summary
 
 

@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 from pathlib import Path
 
 from .engine import evaluate
@@ -16,9 +17,12 @@ def _spreadsheet_safe(value: str) -> str:
 
 
 def write_report(result: dict, output_dir: Path) -> None:
-    output_dir.mkdir(parents=True)
-    (output_dir / "report.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    with (output_dir / "review-queue.csv").open("w", newline="", encoding="utf-8") as stream:
+    output_dir.mkdir(parents=True, mode=0o700)
+    descriptor = os.open(output_dir / "report.json", os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
+        stream.write(json.dumps(result, indent=2, sort_keys=True) + "\n")
+    descriptor = os.open(output_dir / "review-queue.csv", os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    with os.fdopen(descriptor, "w", newline="", encoding="utf-8") as stream:
         writer = csv.DictWriter(stream, fieldnames=("entity_type", "entity_id", "reason", "reviewer",
                                                      "decision", "reviewed_at", "notes"))
         writer.writeheader()
