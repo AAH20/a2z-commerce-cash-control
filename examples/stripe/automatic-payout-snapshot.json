@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "origin": "fictional_fixture",
+  "complete_pagination": true,
+  "payout": {
+    "id": "po_demo1",
+    "object": "payout",
+    "amount": 14500,
+    "currency": "usd",
+    "automatic": true,
+    "status": "paid",
+    "reconciliation_status": "completed",
+    "created": 1786147200,
+    "livemode": false
+  },
+  "transactions": [
+    {"id": "txn_demo1", "type": "charge", "source": "ch_demo1", "currency": "usd", "amount": 10000, "fee": 300, "net": 9700, "created": 1785974400, "available_on": 1785974400, "exchange_rate": null},
+    {"id": "txn_demo2", "type": "charge", "source": "ch_demo2", "currency": "usd", "amount": 5000, "fee": 200, "net": 4800, "created": 1786060800, "available_on": 1786060800, "exchange_rate": null}
+  ],
+  "boundary": "Entirely fictional Stripe-shaped data; not a live API response."
+}

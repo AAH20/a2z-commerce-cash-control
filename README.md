@@ -8,6 +8,8 @@ Commerce teams often have several accurate systems and no single answer to a pra
 
 **New: [A2Z CloseOps firm pilot](docs/CLOSEOPS.md).** A `closeops run` command evaluates several customer manifests in one atomic local run, stores each client report in its own folder, and creates a firm-level exception index. `closeops reviews` validates manually edited queues and counts operator-declared decisions. It is a local workflow, not authenticated multi-tenant SaaS.
 
+**New: [CloseOps Connect Stripe payout bridge](docs/STRIPE_BRIDGE.md).** A GET-only connector can snapshot one authorized automatic payout and its balance transactions. The offline normalizer emits charge and payout CSVs **only** when the entire paid USD payout is representable by mapped positive charges. Refunds, disputes, reserves, conversions and incomplete payouts are held rather than misrepresented. The checked-in example is fictional; no live merchant account was accessed.
+
 ## Run the fictional example
 
 ```bash

@@ -15,3 +15,5 @@ jobs:
       - run: closeops run examples/firm/manifest.json --output-dir /tmp/closeops-demo
       - run: closeops reviews /tmp/closeops-demo --output /tmp/closeops-reviews.json
       - run: python -c 'import json; d=json.load(open("/tmp/closeops-demo/portfolio.json")); assert d["client_count"] == 2 and d["total_exceptions"] == 1'
+      - run: stripe-bridge normalize examples/stripe/automatic-payout-snapshot.json examples/stripe/charge-order-map.csv --output-dir /tmp/stripe-bridge-demo
+      - run: python -c 'import json; d=json.load(open("/tmp/stripe-bridge-demo/normalization.json")); assert d["status"] == "NORMALIZED" and d["charge_count"] == 2'
