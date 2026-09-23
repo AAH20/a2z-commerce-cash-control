@@ -1,0 +1,2 @@
+charge_id,order_id,currency,gross,fee,net,payout_id,settled_at
+SC1,S1,USD,20.00,1.00,19.00,SP1,2026-08-11

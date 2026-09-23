@@ -4,13 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "a2z-commerce-cash-control"
-version = "0.1.0"
+version = "0.2.0"
 description = "Read-only commerce order, processor payout, and ledger reconciliation"
 requires-python = ">=3.11"
 dependencies = []
 
 [project.scripts]
 cash-control = "cash_control.cli:main"
+closeops = "cash_control.closeops:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

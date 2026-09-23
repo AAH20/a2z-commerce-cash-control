@@ -12,3 +12,6 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - run: cash-control examples/manifest.json --output-dir /tmp/cash-control-demo
       - run: python -c 'import json; d=json.load(open("/tmp/cash-control-demo/report.json")); assert d["ledger_linked_payout_by_currency"] == {"USD":"145.00"} and d["exception_counts"] == {"missing_processor_charge":1}'
+      - run: closeops run examples/firm/manifest.json --output-dir /tmp/closeops-demo
+      - run: closeops reviews /tmp/closeops-demo --output /tmp/closeops-reviews.json
+      - run: python -c 'import json; d=json.load(open("/tmp/closeops-demo/portfolio.json")); assert d["client_count"] == 2 and d["total_exceptions"] == 1'

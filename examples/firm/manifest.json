@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "firm_key": "fictional-accountants",
+  "period": "2026-08",
+  "clients": [
+    {"client_key": "fictional-store", "manifest": "../manifest.json"},
+    {"client_key": "second-store", "manifest": "second-store/manifest.json"}
+  ]
+}

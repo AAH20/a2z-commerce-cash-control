@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "customer_key": "second-store",
+  "period": "2026-08",
+  "as_of": "2026-08-31",
+  "sources": {
+    "orders": {"path": "orders.csv", "rows": 1, "totals_by_currency": {"USD": "20.00"}},
+    "charges": {"path": "charges.csv", "rows": 1, "totals_by_currency": {"USD": "20.00"}},
+    "payouts": {"path": "payouts.csv", "rows": 1, "totals_by_currency": {"USD": "19.00"}},
+    "ledger": {"path": "ledger.csv", "rows": 1, "totals_by_currency": {"USD": "19.00"}}
+  }
+}

@@ -80,6 +80,12 @@ class CashControlTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "closed period"):
             evaluate(self.root / "manifest.json")
 
+    def test_spreadsheet_formula_identifier_rejected(self):
+        orders = self.root / "orders.csv"
+        orders.write_text(orders.read_text().replace("O3,USD", "=1+1,USD"))
+        with self.assertRaisesRegex(ValueError, "unsafe or invalid order_id"):
+            evaluate(self.root / "manifest.json")
+
 
 if __name__ == "__main__":
     unittest.main()

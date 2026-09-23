@@ -52,6 +52,9 @@ def read_csv(path: Path, kind: str, as_of: date) -> dict[str, dict]:
                     raise ValueError(f"{kind} has blank {field}")
                 row[field] = row[field].strip()
             identifier = row[IDS[kind]]
+            for id_field in ("order_id", "payout_id", "entry_id", "charge_id"):
+                if id_field in row and not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}", row[id_field]):
+                    raise ValueError(f"{kind} has unsafe or invalid {id_field}")
             if identifier in result:
                 raise ValueError(f"duplicate {kind} identifier: {identifier}")
             if not re.fullmatch(r"[A-Z]{3}", row["currency"]):

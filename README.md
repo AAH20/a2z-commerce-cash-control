@@ -6,6 +6,8 @@ Commerce teams often have several accurate systems and no single answer to a pra
 
 > **Scope today:** local CLI, deterministic matching, fictional fixture, tests and CI. There is no Shopify, Stripe or QuickBooks connection; no merchant login; no hosted tenant; no write-back. A ledger-linked payout is not independently bank-confirmed cash, and an exception is not necessarily lost revenue.
 
+**New: [A2Z CloseOps firm pilot](docs/CLOSEOPS.md).** A `closeops run` command evaluates several customer manifests in one atomic local run, stores each client report in its own folder, and creates a firm-level exception index. `closeops reviews` validates manually edited queues and counts operator-declared decisions. It is a local workflow, not authenticated multi-tenant SaaS.
+
 ## Run the fictional example
 
 ```bash
